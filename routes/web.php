@@ -11,6 +11,13 @@
 |
 */
 
+use App\Notifications\DingDong;
+use Illuminate\Support\Facades\Notification;
+
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/send', function () {
+    Notification::send(User::first(), new DingDong());
 });
