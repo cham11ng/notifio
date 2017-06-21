@@ -13,11 +13,22 @@
 
 use App\Notifications\DingDong;
 use Illuminate\Support\Facades\Notification;
+use App\User;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/send', function () {
-    Notification::send(User::first(), new DingDong());
+    try {
+    	Notification::send(User::first(), new DingDong());
+    	
+    	return response()->json([
+    		'status' => 'Success'
+    	], 200);
+    } catch (\Exception $ex) {
+    	return response()->json([
+	    	'status' => 'Failure'
+	    ], 404);
+    }
 });

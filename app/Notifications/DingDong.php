@@ -40,8 +40,7 @@ class DingDong extends Notification
     public function toSlack($notifiable)
     {
         return (new SlackMessage)
-            ->from('Ghost', ':ghost:')
-            ->to('#other')
-            ->content('One of your invoices has been paid!');
+            ->from('Broken Heart', ':broken_heart:')
+            ->content('SuperGlue Chaiyo Hau. Koi sanga cha?');
     }
 }
