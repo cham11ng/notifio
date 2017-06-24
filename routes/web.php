@@ -14,9 +14,20 @@ use Illuminate\Support\Facades\Redis;
 */
 
 Route::get('/', function () {
-	Redis::set('name', 'Sagar');
+	// 1. Publish event with Redis
+	$data = [
+		'event' => 'UserSignedUp',
+		'data' => [
+			'username' => 'JohnDoe'
+		]
+	];
+    
+    Redis::publish('cham11ng', json_encode($data));
+ 	
+ 	// 2. Node.js + Redis subscribes to the event
 
-	return Redis::get('name');
-    //return view('welcome');
+    // 3. Use socket.io to emit to all clients.
+
+    return view('welcome');
 });
 
