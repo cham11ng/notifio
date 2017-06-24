@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Redis;
+use App\Events\UserSignedUp;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,5 +15,27 @@
 */
 
 Route::get('/', function () {
+	// 1. Publish event with Redis
+	$data = [
+		'event' => 'UserSignedUp',
+		'data' => [
+			'username' => 'JohnDoe'
+		]
+	];
+    
+    Redis::publish('cham11ng', json_encode($data));
+ 	
+ 	// 2. Node.js + Redis subscribes to the event
+
+    // 3. Use socket.io to emit to all clients.
+
     return view('welcome');
 });
+
+Route::get('/signed-up', function() {
+	// Event Broadcasting.
+	event(new UserSignedUp(Request::query('name')));
+
+	return view('welcome');
+});
+
