@@ -25,7 +25,7 @@
         mounted() {
             const vm = this;
             
-            socket.on('cham11ng:UserSignedUp', function(data) {
+            socket.on('cham11ng:App\\Events\\UserSignedUp', function(data) {
                 vm.users.push(data.username);
             });
         }

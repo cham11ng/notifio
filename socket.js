@@ -9,8 +9,7 @@ redis.subscribe('cham11ng');
 
 redis.on('message', function(channel, message) {
 	message = JSON.parse(message);
-	io.emit(channel + ':' + message.event, message.data); // cham11ng:UserSignedUp
-	console.log(message.data.username);
+	io.emit(channel + ':' + message.event, message.data); // cham11ng:UserSignedUp	
 });
 
 server.listen(3000, function() {

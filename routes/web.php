@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Redis;
+use App\Events\UserSignedUp;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,5 +30,12 @@ Route::get('/', function () {
     // 3. Use socket.io to emit to all clients.
 
     return view('welcome');
+});
+
+Route::get('/signed-up', function() {
+	// Event Broadcasting.
+	event(new UserSignedUp(Request::query('name')));
+
+	return view('welcome');
 });
 
