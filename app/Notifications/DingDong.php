@@ -40,7 +40,7 @@ class DingDong extends Notification
     public function toSlack($notifiable)
     {
         return (new SlackMessage)
-            ->from('Broken Heart', ':broken_heart:')
-            ->content('SuperGlue Chaiyo Hau. Koi sanga cha?');
+            ->from('Yum', ':yum:')
+            ->content(':yum:');
     }
 }
