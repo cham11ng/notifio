@@ -60,3 +60,10 @@ Route::get('/callback', function (Illuminate\Http\Request $request) {
     return json_decode((string) $response->getBody(), true);
 });
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/status', function() {
+    return view('status.index');
+});
